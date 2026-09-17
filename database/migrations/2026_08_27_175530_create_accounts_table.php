@@ -19,6 +19,7 @@ return new class extends Migration
             ->cascadeOnDelete();
             
             $table->timestamps();
+            $table->index('user_id');
         });
     }
 

@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+    User::query()->delete();
+    
     User::create([
             'name' => 'Abderrahim',
             'email' => 'admin@example.com',
@@ -26,10 +28,15 @@ class DatabaseSeeder extends Seeder
             'active' => true,
             'currency' => 'MAD',
     ]);
+    Account::query()->delete();
     Account::create([
         'user_id' => User::first()->id,
     ]);
-        
+    $this->call([
+        CategorySeeder::class,
+        PaymentMethodSeeder::class,
+        TransactionSeeder::class,
+    ]);    
             
     }
 }
