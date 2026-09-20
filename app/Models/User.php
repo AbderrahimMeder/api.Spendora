@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Notifications\ResetPasswordNotification;
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -24,6 +25,30 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'google_id',
+        'avatar',
+        'phone',
+        'role',
+        'active',
+        'last_login',
+        'currency',
+        'theme',
+        'language',
+        'timezone',
+        'country',
+    ];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
     protected function casts(): array
     {
         return [

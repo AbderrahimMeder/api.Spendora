@@ -91,7 +91,7 @@ public function show(Request $request, $id)
             ], 404);
         }
         $validated = $request->validate([
-            'amount' => 'required|decimal:2',
+            'amount' => 'required',
             'title' => 'required|string|max:255',
             'type' => 'required|in:EXPENSE,INCOME,TRANSFER',
             'category_id' => 'required|exists:categories,id',
