@@ -11,7 +11,37 @@ use Illuminate\Support\Facades\Password;
 use App\Notifications\VerifyEmailNotification;
 use Illuminate\Support\Str;
 class AuthController extends Controller
-{
+{   
+    public function SendEmailVerification(User $user=null,Request $request=null)
+    {
+        if($user === null){
+            $request->validate([
+                'email' => 'required|string|email',
+            ]);
+            $user = User::where('email', $request->email)->first();
+        }
+        $tokenVerification = Str::random(64);
+        if(!$user){
+            return response()->json([
+                'status' => 404,
+                'message' => 'User not found',
+            ], 404);
+        }
+        $user->emailVerifications()->delete();
+        EmailVerification::create([
+            'user_id' => $user->id,
+            'token_hash' => hash('sha256', $tokenVerification),
+            'expires_at' => now()->addMinutes(60),
+        ]);
+        $user->notify(
+            new VerifyEmailNotification($tokenVerification)
+        );
+        return response()->json([
+            'status' => 200,
+            'message' => 'Email verification sent successfully',
+        ], 200);
+    }
+    
     public function register(Request $request)
     {
         $fields = $request->validate([
@@ -49,29 +79,21 @@ class AuthController extends Controller
                 'message' => 'Invalid credentials'
             ], 401);
         }
-        $tokenAuth = $user->createToken(
+        $token = $user->createToken(
             'authToken',
             ['*'],
             now()->addMonths(1)
         )->plainTextToken;
-        $tokenVerification = Str::random(64);
-        $user->emailVerifications()->delete();
-        EmailVerification::create([
-            'user_id' => $user->id,
-            'token_hash' => hash('sha256', $tokenVerification),
-            'expires_at' => now()->addMinutes(60),
-        ]);
-        $user->notify(
-            new VerifyEmailNotification($tokenVerification)
-        );
+        if($user->email_verified_at === null){
+            $this->SendEmailVerification($user,null);
+        }
         return response()->json([
             'status' => 200,
             'message' => 'user logged in successfully',
             'user' => $user,
-            'token' => $tokenAuth
+            'token' => $token
         ], 200);
     }
-
     public function getCurrentUser(Request $request)
     {
         $req = $request->header('Authorization');

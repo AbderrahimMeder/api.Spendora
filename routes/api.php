@@ -16,6 +16,7 @@ Route::post('/login',[AuthController::class , 'login']);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 Route::post('/verify-email', [AuthController::class, 'verifieEmailToken']);
+Route::post('/send-email-verification', [AuthController::class, 'SendEmailVerification']);
 Route::middleware('auth:sanctum')->group(function () {
     //get currect user for verifie user and route permission and role 
     Route::get('/current-user',[AuthController::class , 'getCurrentUser']);
