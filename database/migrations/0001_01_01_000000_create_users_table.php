@@ -13,25 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('password');
-            $table->string('phone')->nullable();
-            $table->enum('role',['USER','ADMIN','MANAGER'])->default('USER');
-            $table->boolean('active')->default(true);
-            $table->timestamp('last_login')->nullable();
-            $table->string('currency')->default('USD');
-            $table->string('theme')->default('light');
-            $table->string('language')->default('en');
-            $table->string('timezone')->default('UTC');
-            $table->string('country')->default('Morocco');    
-            $table->rememberToken();
-            $table->timestamps();
-            $table->index('email');
-            $table->index('phone');
-            $table->index('name');
+            $table->string('name');w
             
         });
 

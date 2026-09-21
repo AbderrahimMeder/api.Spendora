@@ -21,12 +21,14 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->date('date');
             $table->string('currency');
+            $table->boolean('is_hidden')->default(false);
             $table->foreignUuid('payment_method_id')
             ->references('id')
             ->on('payment_methods')
             ->cascadeOnDelete();
             $table->enum('status',['PENDING','COMPLETED','FAILED','CANCELLED','REFUNDED'])->default('PENDING');
             $table->timestamps();
+            //index
             $table->index('account_id');
             $table->index('category_id');
             $table->index('date');

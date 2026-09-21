@@ -13,6 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Notifications\ResetPasswordNotification;
+use App\Models\EmailVerification;
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -59,5 +60,9 @@ class User extends Authenticatable
     public function account(): HasOne
     {
         return $this->hasOne(Account::class);
+    }
+    public function emailVerifications()
+    {
+        return $this->hasOne(EmailVerification::class);
     }
 }

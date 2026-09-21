@@ -40,4 +40,8 @@ class Transictions extends Model
     {
         return $this->belongsTo(PaymentMethod::class,'payment_method_id');
     }
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class);
+    }
 }

@@ -18,8 +18,10 @@ public function index(Request $request)
     ->latest('date')
     ->get();
 
-    return response()->json([       
+    return response()->json([  
+
         'status' => 200,
+        'message' => 'Failed to fetch transactions',
         'transactions' => $transactions,
     ]);
 }

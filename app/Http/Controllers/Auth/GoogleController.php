@@ -31,6 +31,7 @@ class GoogleController extends Controller
                 'name' => $googleUser->getName(),
                 'email' => $googleUser->getEmail(),
                 'google_id' => $googleUser->getId(),
+                'avatar' => $googleUser->getAvatar(),
                 'password' => Hash::make(str()->random(32)),
             ]);
         } else {

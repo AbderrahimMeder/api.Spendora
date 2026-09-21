@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
         CategorySeeder::class,
         PaymentMethodSeeder::class,
         TransactionSeeder::class,
+        BudgetSeeder::class,
     ]);    
             
     }
