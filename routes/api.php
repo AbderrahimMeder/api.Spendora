@@ -30,6 +30,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/categories',[CategoriesController::class , 'index']);
     //payment methods
     Route::get('/payment-methods',[PaymentMethodController::class , 'index']);
+    Route::post('/payment-method',[PaymentMethodController::class , 'create']);
+    Route::get('/payment-method/{id}',[PaymentMethodController::class , 'show']);
+    Route::patch('/payment-method/{id}',[PaymentMethodController::class , 'update']);
+    Route::delete('/payment-method/{id}',[PaymentMethodController::class , 'delete']);
     //budgets
     Route::get('/budgets',[BudgesController::class , 'index']);
     Route::get('/budget/{id}', [BudgesController::class , 'show']);

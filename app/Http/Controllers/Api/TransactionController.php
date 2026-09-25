@@ -51,7 +51,7 @@ public function show(Request $request, $id)
     ]);
     }
 
-        public function POST(Request $request)
+    public function POST(Request $request)
     {
         $account = $request->user()->account;
         $validated = $request->validate([
