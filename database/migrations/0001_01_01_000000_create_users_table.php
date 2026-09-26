@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('country')->default('Morocco');    
             $table->rememberToken();
             $table->timestamps();
+            
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
