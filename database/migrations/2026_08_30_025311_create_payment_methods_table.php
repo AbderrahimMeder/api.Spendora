@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('financial_accounts', function (Blueprint $table) {
+        Schema::create('payment_methods', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('account_id')->constrained('accounts')->cascadeOnDelete();
+            $table->foreignUuid('account_id')
+            ->references('id')
+            ->on('accounts')
+            ->onDelete('cascade');
             $table->string('name');
-            $table->enum('type', ['BANK','CASH','CARD','WALLET'])->default('BANK');
-            $table->decimal('balance', 15, 2)->default(0);
-            $table->string('currency', 3)->default('MAD');
-            $table->boolean('active')->default(true);
+            $table->enum('type', ['CASH', 'BANK', 'CARD', 'MOBILE', 'ONLINE', 'OTHER']);
+            $table->boolean('is_active_method')->default(false);
             $table->timestamps();
             $table->index('account_id');
-            $table->index('type');
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('financail_accounts');
+        Schema::dropIfExists('payment_methods');
     }
 };

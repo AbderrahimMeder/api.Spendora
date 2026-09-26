@@ -4,7 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use App\Models\categories;
 class Transictions extends Model
 {
     use HasUuids;
@@ -15,11 +15,11 @@ class Transictions extends Model
         'amount',
         'title',
         'type',
-        'category',
+        'category_id',
         'description',
         'date',
         'currency',
-        'payment_method',
+        'payment_method_id',
         'status',
     ];
 
@@ -32,5 +32,16 @@ class Transictions extends Model
     {
         return $this->belongsTo(Account::class);
     }
-    
+    public function categories():BelongsTo
+    {
+        return $this->belongsTo(categories::class,'category_id');
+    }
+    public function payment_methods():BelongsTo
+    {
+        return $this->belongsTo(PaymentMethod::class,'payment_method_id');
+    }
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class);
+    }
 }
