@@ -22,8 +22,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'salary',
                 'description' => 'Monthly salary',
                 'type' => 'INCOME',
-                'category_color' => '#4CAF50',
-                'category_image' => '💰',
+                'category_color' => 'rgb(76, 175, 80,0.12)',
+                'category_image' => 'Banknote',
             ],
 
             [
@@ -31,8 +31,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'housing',
                 'description' => 'Rent or mortgage',
                 'type' => 'EXPENSE',
-                'category_color' => '#f44336',
-                'category_image' => '🏠',
+                'category_color' => 'rgb(244, 67, 54,0.12)',
+                'category_image' => 'House',
             ],
 
             [
@@ -40,8 +40,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'food',
                 'description' => 'Groceries and restaurants',
                 'type' => 'EXPENSE',
-                'category_color' => '#2196F3',
-                'category_image' => '🍔',
+                'category_color' => 'rgb(33, 150, 243,0.12)',
+                'category_image' => 'Utensils',
             ],
 
             [
@@ -49,8 +49,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'transport',
                 'description' => 'Taxi, gas, public transport',
                 'type' => 'EXPENSE',
-                'category_color' => '#FF9800',
-                'category_image' => '🚗',
+                'category_color' => 'rgb(255, 152, 0,0.12)',
+                'category_image' => 'Car',
             ],
 
             [
@@ -58,8 +58,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'freelance',
                 'description' => 'Freelance income',
                 'type' => 'INCOME',
-                'category_color' => '#9C27B0',
-                'category_image' => '💼',
+                'category_color' => 'rgb(156, 39, 176,0.12)',
+                'category_image' => 'BriefcaseBusiness',
             ],
 
             [
@@ -67,8 +67,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'entertainment',
                 'description' => 'Cinema, dining out, hobbies',
                 'type' => 'EXPENSE',
-                'category_color' => '#FFC107',
-                'category_image' => '🎭',
+                'category_color' => 'rgb(255, 193, 7,0.12)',
+                'category_image' => 'Clapperboard',
             ],
 
             [
@@ -76,8 +76,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'bills',
                 'description' => 'Electricity, internet, phone',
                 'type' => 'EXPENSE',
-                'category_color' => '#FF5722',
-                'category_image' => '🧾',
+                'category_color' => 'rgb(96, 125, 139,0.12)',
+                'category_image' => 'ReceiptText',
             ],
 
             [
@@ -85,8 +85,8 @@ class CategorySeeder extends Seeder
                 'slug' => 'other',
                 'description' => 'Miscellaneous',
                 'type' => 'EXPENSE',
-                'category_color' => '#607D8B',
-                'category_image' => '🔀',
+                'category_color' => 'Shuffle',
+                'category_image' => 'rgb(0,0,0)',
             ],
         ];
 

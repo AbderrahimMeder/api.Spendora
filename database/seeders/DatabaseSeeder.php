@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
     
     User::create([
             'name' => 'Abderrahim',
-            'email' => 'admin@example.com',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('password123'),
             'role' => 'ADMIN',
             'active' => true,
-            'currency' => 'MAD',
+            'currency' => 'USD',
     ]);
     Account::query()->delete();
     Account::create([
