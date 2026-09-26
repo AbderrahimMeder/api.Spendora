@@ -28,6 +28,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/transactions/{id}/delete',[TransactionController::class , 'delete']);
     //categories
     Route::get('/categories',[CategoriesController::class , 'index']);
+    Route::get('/categories/{id}',[CategoriesController::class , 'show']);
+    Route::post('/categories/create',[CategoriesController::class , 'create']);
+    Route::patch('/categories/{id}/update',[CategoriesController::class , 'update']);
+    Route::delete('/categories/{id}/delete',[CategoriesController::class , 'delete']);
     //payment methods
     Route::get('/payment-methods',[PaymentMethodController::class , 'index']);
     Route::post('/payment-method',[PaymentMethodController::class , 'create']);

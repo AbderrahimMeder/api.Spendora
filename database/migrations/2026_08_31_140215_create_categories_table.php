@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('account_id');
             $table->string('name');
             $table->string('slug');
-            $table->unique(['name','account_id']);
+            $table->unique(['slug','account_id']);
             $table->text('description')->nullable();
             $table->string('max_budget')->nullable();
             $table->enum('budget_period', ['daily', 'weekly', 'monthly', 'yearly'])->nullable();
