@@ -9,15 +9,19 @@ use App\Http\Controllers\Api\BudgesController;
 use App\Http\Controllers\Auth\GoogleController;
 
 // auth
-Route::get('/auth/google', [GoogleController::class, 'redirect']);
-Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login',[AuthController::class , 'login']);
-Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
-Route::post('/reset-password', [AuthController::class, 'resetPassword']);
-Route::post('/verify-email', [AuthController::class, 'verifieEmailToken']);
-Route::post('/send-email-verification', [AuthController::class, 'SendEmailVerification']);
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('throttle:google')->group(function () {
+    Route::get('/auth/google', [GoogleController::class, 'redirect']);
+    Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
+});
+Route::middleware('throttle:auth')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+    Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+    Route::post('/verify-email', [AuthController::class, 'verifieEmailToken']);
+    Route::post('/send-email-verification', [AuthController::class, 'SendEmailVerification']);
+});
+Route::middleware(['auth:sanctum','throttle:api'])->group(function () {
     //get currect user for verifie user and route permission and role 
     Route::get('/current-user',[AuthController::class , 'getCurrentUser']);
     //transactions

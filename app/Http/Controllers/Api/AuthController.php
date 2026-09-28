@@ -76,7 +76,7 @@ class AuthController extends Controller
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response()->json([
                 'status' => 401,
-                'message' => 'Invalid credentials'
+                'message' => 'Email or Password is Wrong'
             ], 401);
         }
         $token = $user->createToken(
